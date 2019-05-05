@@ -1,9 +1,9 @@
 #include "Game.h"
 
-Game* game;
+QuattroMori::Game* game;
 
 int main() {
-	game = new Game();
+	game = new QuattroMori::Game();
 
 	game->runLoop();
 }

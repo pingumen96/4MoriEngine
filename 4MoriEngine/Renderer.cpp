@@ -1,5 +1,7 @@
 #include "Renderer.h"
 
+using namespace QuattroMori;
+
 Renderer::Renderer(int width, int height) :
 	width(width),
 	height(height),

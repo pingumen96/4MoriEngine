@@ -3,4 +3,7 @@
 
 using namespace QuattroMori;
 
-const GameObject SceneGraph::root = GameObject(glm::mat4(), glm::fquat());
+const std::shared_ptr<class GameObject> SceneGraph::root = std::make_shared<GameObject>(glm::mat4(), glm::fquat());
+
+QuattroMori::SceneGraph::SceneGraph() {
+}
