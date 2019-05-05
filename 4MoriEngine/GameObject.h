@@ -7,9 +7,10 @@
 namespace QuattroMori {
 	class GameObject {
 	public:
+		enum class State {Active, Inactive, Dead};
 		GameObject() = delete;
 		GameObject(glm::vec3 position, glm::fquat rotation);
-		GameObject(std::shared_ptr<GameObject> parent, glm::vec3 position, glm::fquat rotation);
+		GameObject(GameObject* parent, glm::vec3 position, glm::fquat rotation);
 		~GameObject();
 
 		const glm::mat4& getTransform() const { return transform; }
@@ -20,13 +21,15 @@ namespace QuattroMori {
 	private:
 		glm::mat4 transform;
 		glm::fquat rotation;
+		State state;
 
 		// object components
 		std::vector<std::unique_ptr<class AComponent>> components;
 
 		// scene graph management
-		std::shared_ptr<GameObject> parent;
-		std::vector<std::shared_ptr<GameObject>> children;
+		GameObject* parent;
+		std::vector<GameObject*> children;
+		void addChild(GameObject* child);
 
 		unsigned int id;
 	};

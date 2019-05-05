@@ -12,7 +12,7 @@ using namespace QuattroMori;
 Game::Game() :
 	renderer(nullptr),
 	sceneGraph(nullptr),
-	gameObjects(std::vector<std::shared_ptr<GameObject>>()){
+	gameObjects(std::vector<GameObject*>()){
 	renderer = new Renderer(500, 500);
 	load();
 }
@@ -37,9 +37,9 @@ void Game::load() {
 	// il primo oggetto che si carica è la radice di tutti gli altri
 	gameObjects.emplace_back(SceneGraph::getRoot());
 
-	gameObjects.emplace_back(std::make_shared<GameObject>(glm::vec3(1.0f, 1.0f, 1.0f), glm::fquat()));
-	gameObjects.emplace_back(std::make_shared<GameObject>(glm::vec3(2.0f, 2.0f, 1.0f), glm::fquat()));
-	gameObjects.emplace_back(std::make_shared<GameObject>(gameObjects[1], glm::vec3(1.0f, 2.0f, 1.0f), glm::fquat()));
+	gameObjects.emplace_back(new GameObject(glm::vec3(1.0f, 1.0f, 1.0f), glm::fquat()));
+	gameObjects.emplace_back(new GameObject(glm::vec3(2.0f, 2.0f, 1.0f), glm::fquat()));
+	gameObjects.emplace_back(new GameObject(gameObjects[1], glm::vec3(1.0f, 2.0f, 1.0f), glm::fquat()));
 }
 
 unsigned int Game::idCounter = 0;

@@ -12,7 +12,7 @@ namespace QuattroMori {
 	private:
 		class SceneGraph* sceneGraph;
 		class Renderer* renderer;
-		std::vector<std::shared_ptr<class GameObject>> gameObjects;
+		std::vector<class GameObject*> gameObjects;
 
 		void load();
 
