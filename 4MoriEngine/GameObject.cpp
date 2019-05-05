@@ -8,6 +8,7 @@ using namespace QuattroMori;
 
 GameObject::GameObject(GameObject* parent, glm::vec3 position, glm::fquat rotation) :
 	parent(parent),
+	state(State::Active),
 	transform(glm::translate(glm::mat4(1.0f), position)),
 	rotation(rotation),
 	components(std::vector<std::unique_ptr<AComponent>>()) {
@@ -35,6 +36,12 @@ glm::mat4 GameObject::getWorldTransform() {
 		return transform;
 	} else {
 		return parent->getWorldTransform() * transform;
+	}
+}
+
+void GameObject::update() {
+	for(int i = 0; i < components.size(); i++) {
+		components[i]->update();
 	}
 }
 

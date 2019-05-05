@@ -18,6 +18,8 @@ namespace QuattroMori {
 		glm::mat4 getWorldTransform();
 
 		unsigned int getId() const { return id; }
+
+		void update();
 	private:
 		glm::mat4 transform;
 		glm::fquat rotation;
