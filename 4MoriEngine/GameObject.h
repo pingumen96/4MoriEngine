@@ -7,13 +7,16 @@
 namespace QuattroMori {
 	class GameObject {
 	public:
-		GameObject(glm::mat4 transform, glm::fquat rotation);
-		GameObject(std::shared_ptr<GameObject> parent, glm::mat4 transform, glm::fquat rotation);
+		GameObject() = delete;
+		GameObject(glm::vec3 position, glm::fquat rotation);
+		GameObject(std::shared_ptr<GameObject> parent, glm::vec3 position, glm::fquat rotation);
 		~GameObject();
 
-		const glm::mat4& getTransform() { return transform; }
-		const glm::fquat& getRotation() { return rotation; }
+		const glm::mat4& getTransform() const { return transform; }
+		const glm::fquat& getRotation() const { return rotation; }
 		glm::mat4 getWorldTransform();
+
+		unsigned int getId() const { return id; }
 	private:
 		glm::mat4 transform;
 		glm::fquat rotation;
@@ -24,5 +27,7 @@ namespace QuattroMori {
 		// scene graph management
 		std::shared_ptr<GameObject> parent;
 		std::vector<std::shared_ptr<GameObject>> children;
+
+		unsigned int id;
 	};
 }

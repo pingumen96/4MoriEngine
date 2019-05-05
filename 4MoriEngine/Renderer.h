@@ -6,6 +6,8 @@ namespace QuattroMori {
 	public:
 		Renderer(int width, int height);
 
+		GLFWwindow* getWindow() const { return window; }
+
 		void render();
 	private:
 		void init();

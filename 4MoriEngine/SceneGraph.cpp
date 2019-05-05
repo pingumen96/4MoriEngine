@@ -1,9 +1,17 @@
+#include <memory>
 #include "SceneGraph.h"
 #include "GameObject.h"
 
 using namespace QuattroMori;
 
-const std::shared_ptr<class GameObject> SceneGraph::root = std::make_shared<GameObject>(glm::mat4(), glm::fquat());
+std::shared_ptr<GameObject> SceneGraph::root = nullptr;
 
-QuattroMori::SceneGraph::SceneGraph() {
+SceneGraph::SceneGraph() {
+}
+
+const std::shared_ptr<class GameObject> QuattroMori::SceneGraph::getRoot() {
+	if(root == nullptr) {
+		root = std::make_shared<GameObject>(nullptr, glm::vec3(0.0f, 0.0f, 0.0f), glm::fquat());
+	}
+	return root;
 }
