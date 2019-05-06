@@ -9,6 +9,7 @@ namespace QuattroMori {
 	public:
 		enum class State {Active, Inactive, Dead};
 		GameObject() = delete;
+		GameObject(const GameObject& src);
 		GameObject(glm::vec3 position, glm::fquat rotation);
 		GameObject(GameObject* parent, glm::vec3 position, glm::fquat rotation);
 		~GameObject();
@@ -20,6 +21,8 @@ namespace QuattroMori {
 		unsigned int getId() const { return id; }
 
 		void update();
+
+		GameObject& operator=(const GameObject& r);
 	private:
 		glm::mat4 transform;
 		glm::fquat rotation;
